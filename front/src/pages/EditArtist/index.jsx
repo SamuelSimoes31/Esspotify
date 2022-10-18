@@ -32,7 +32,7 @@ const EditArtist = () => {
     try {
       const string = "/artists/" + loggedUserId;
       getData(string);
-    } catch (erorr) {
+    } catch (error) {
       alert("Server problema");
     }
   }, [loggedUserId]);
@@ -50,7 +50,7 @@ const EditArtist = () => {
       alert("Deu certo");
       navigate("/artist", { replace: true });
     } catch (error) {
-      alert("Algo deu errado.");
+      alert("Algo deu errado");
     }
   };
 
