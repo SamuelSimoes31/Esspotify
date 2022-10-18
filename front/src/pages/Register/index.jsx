@@ -1,12 +1,10 @@
 import Input from "../../components/Input";
 import Checkbox from "../../components/Checkbox";
-import LandingInfo from '../../components/LandingInfo';
-import "./styles.css"
-import { Link, useNavigate } from 'react-router-dom';
-import Button from '../../components/Button';
-import { useState } from 'react';
-import {api} from '../../services/api'
-
+import LandingInfo from "../../components/LandingInfo";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import { useState } from "react";
+import { api } from "../../services/api";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -19,30 +17,32 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const body = {name, email,country, genre, password};
-    if(!agreeTerms) {
-      alert("Aceite os termos")
-      return
+    e.preventDefault();
+    const body = { name, email, country, genre, password };
+    if (!agreeTerms) {
+      alert("Aceite os termos");
+      return;
     }
     try {
-      await api.post("/artists",body)
-      alert("Cadastrado com sucesso")
-      navigate("/login")
+      await api.post("/artists", body);
+      alert("Cadastrado com sucesso");
+      navigate("/login");
     } catch (error) {
-      alert("Deu ruim ein")
+      alert("Deu ruim ein");
     }
-  }
+  };
 
-  return(
-    <div className='Container'>
+  return (
+    <div className="Container">
       <LandingInfo />
       <main className="LoginContainer">
-        <form className='FormContainer' onSubmit={handleSubmit}>
-          <p className='Title'>Cadastro</p>
-          <p className='subtitle'>
+        <form className="FormContainer" onSubmit={handleSubmit}>
+          <p className="Title">Cadastro</p>
+          <p className="subtitle">
             {"Já está cadastrado? "}
-            <Link className='Link' to='/login'>Faça o login</Link>
+            <Link className="Link" to="/login">
+              Faça o login
+            </Link>
           </p>
           <Input
             children={"Nome"}
@@ -88,10 +88,10 @@ const Register = () => {
           />
           <Checkbox
             checked={agreeTerms}
-            onClick={() => setAgreeTerms(p => !p)}
+            onClick={() => setAgreeTerms((p) => !p)}
             required
           >
-            Concordo com os termos e condições do  Esspotify
+            Concordo com os termos e condições do Esspotify
           </Checkbox>
           <Button type="submit">Cadastrar</Button>
         </form>

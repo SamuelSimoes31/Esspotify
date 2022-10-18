@@ -1,16 +1,16 @@
-import mockingoose from 'mockingoose';
-import supertest from 'supertest';
-import { Artist } from '../models/artist';
-import bcrypt from 'bcrypt';
-import app from '../server';
+import mockingoose from "mockingoose";
+import supertest from "supertest";
+import { Artist } from "../models/artist";
+import bcrypt from "bcrypt";
+import app from "../server";
 
-describe('AUTH', () => {
+describe("AUTH", () => {
   const mockedArtist = {
-    _id: '507f191e810c19729de860ea',
-    name: 'Nome do cara',
-    email: 'name@email.com',
+    _id: "507f191e810c19729de860ea",
+    name: "Nome do cara",
+    email: "name@email.com",
   };
-  const mockedArtistPassword = '123456';
+  const mockedArtistPassword = "123456";
 
   beforeAll(async () => {
     mockedArtist.password = await bcrypt.hash(mockedArtistPassword, 10);
@@ -20,15 +20,13 @@ describe('AUTH', () => {
     mockingoose.resetAll();
   });
 
-  describe('LOGIN', () => {
-
-
+  describe("LOGIN", () => {
     test("Login bem sucedido", async () => {
-      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
+      mockingoose(Artist).toReturn(mockedArtist, "findOne");
 
-      const results = await supertest(app).post('/auth/login').send({
+      const results = await supertest(app).post("/auth/login").send({
         email: mockedArtist.email,
-        password: mockedArtistPassword
+        password: mockedArtistPassword,
       });
 
       expect(results.statusCode).toBe(200);
@@ -37,11 +35,11 @@ describe('AUTH', () => {
     });
 
     test("Login mal sucedido por senha inválida", async () => {
-      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
+      mockingoose(Artist).toReturn(mockedArtist, "findOne");
 
-      const results = await supertest(app).post('/auth/login').send({
+      const results = await supertest(app).post("/auth/login").send({
         email: mockedArtist.email,
-        password: "invalidpassword"
+        password: "invalidpassword",
       });
 
       expect(results.statusCode).toBe(400);
@@ -49,11 +47,11 @@ describe('AUTH', () => {
     });
 
     test("Login mal sucedido por email incorreto", async () => {
-      mockingoose(Artist).toReturn(null, 'findOne');
+      mockingoose(Artist).toReturn(null, "findOne");
 
-      const results = await supertest(app).post('/auth/login').send({
+      const results = await supertest(app).post("/auth/login").send({
         email: "emailinvalido@email.com",
-        password: mockedArtistPassword
+        password: mockedArtistPassword,
       });
 
       expect(results.statusCode).toBe(400);
@@ -62,13 +60,12 @@ describe('AUTH', () => {
 
     test.each([
       { email: "", password: "123456", reason: "email vazio" },
-      { email: mockedArtist.email, password: "", reason: "senha vazia" }
+      { email: mockedArtist.email, password: "", reason: "senha vazia" },
     ])("Login mal sucedido por $reason", async ({ email, password }) => {
-      // mockingoose(Artist).toReturn(null, 'findOne');
 
-      const results = await supertest(app).post('/auth/login').send({
+      const results = await supertest(app).post("/auth/login").send({
         email,
-        password
+        password,
       });
 
       expect(results.statusCode).toBe(400);
@@ -77,45 +74,41 @@ describe('AUTH', () => {
   });
 
   describe("VALIDATE TOKEN", () => {
-    test('Should receive a valid token', async () => {
-      mockingoose(Artist).toReturn(mockedArtist, 'findOne');
-      const resultsLogin = await supertest(app)
-        .post('/auth/login')
-        .send({
-          email: mockedArtist.email,
-          password: mockedArtistPassword
-        });
+    test("Should receive a valid token", async () => {
+      mockingoose(Artist).toReturn(mockedArtist, "findOne");
+      const resultsLogin = await supertest(app).post("/auth/login").send({
+        email: mockedArtist.email,
+        password: mockedArtistPassword,
+      });
 
       const token = resultsLogin.body.token;
 
       const results = await supertest(app)
-        .post('/auth/validate-token')
-        .set('Authorization', 'Bearer ' + token);
+        .post("/auth/validate-token")
+        .set("Authorization", "Bearer " + token);
 
       expect(results.statusCode).toBe(200);
       expect(results.body.userId).toBe(mockedArtist._id);
     });
 
     test.each([
-      {token: "invalid"},
-      {token: "bearer ushakushakusjh"},
-      {token: "Bearer ushakushakusjh"},
-    ])('Should return invalid token for token: $token', async ({token}) => {
-
+      { token: "invalid" },
+      { token: "bearer ushakushakusjh" },
+      { token: "Bearer ushakushakusjh" },
+    ])("Should return invalid token for token: $token", async ({ token }) => {
       const results = await supertest(app)
-        .post('/auth/validate-token')
-        .set('Authorization', token);
+        .post("/auth/validate-token")
+        .set("Authorization", token);
 
       expect(results.statusCode).toBe(401);
       expect(results.body.error).toBe("Invalid token");
     });
 
     test("No token provided", async () => {
-      const results = await supertest(app)
-        .post('/auth/validate-token')
+      const results = await supertest(app).post("/auth/validate-token");
 
       expect(results.statusCode).toBe(401);
       expect(results.body.error).toBe("No token provided");
-    })
+    });
   });
 });

@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
-import AppProvider from '../contexts/index.jsx';
-import AppRoutes from '../routes/index.jsx';
+import AppProvider from "../contexts/index.jsx";
+import AppRoutes from "../routes/index.jsx";
 
 function App() {
   return (

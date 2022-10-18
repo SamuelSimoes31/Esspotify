@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useLogin } from '../../contexts/Login';
-import { api } from '../../services/api';
+import { useEffect, useState } from "react";
+import { useLogin } from "../../contexts/Login";
+import { api } from "../../services/api";
 
-import Icon from '../../components/Icon';
-import AddAlbum from '../../components/AddAlbum';
-import Album from '../../components/Album';
+import Icon from "../../components/Icon";
+import AddAlbum from "../../components/AddAlbum";
+import Album from "../../components/Album";
 
 import "./styles.css";
-import { useNavigate } from 'react-router';
-import { useAlbum } from '../../contexts/Album';
+import { useNavigate } from "react-router";
+import { useAlbum } from "../../contexts/Album";
 
 const Artist = () => {
   const { loggedUserId, handleLogout } = useLogin();
   const [userData, setUserData] = useState();
   const [albums, setAlbums] = useState();
-  const {resetAlbumContext} = useAlbum();
+  const { resetAlbumContext } = useAlbum();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,28 +46,44 @@ const Artist = () => {
       <div className="banner">
         <img src={userData.image} alt="" className="banner-cover" />
         <div className="banner-content">
-          <p className='Nome'>{userData.name}</p>
-          <button className='IconButton' onClick={() => navigate('/editArtist')}>
+          <p className="Nome">{userData.name}</p>
+          <button
+            className="IconButton"
+            onClick={() => navigate("/editArtist")}
+          >
             <Icon iconType="Edit" />
           </button>
         </div>
-        <button className='IconButton LogoutButton' onClick={() => handleLogout()}>
+        <button
+          className="IconButton LogoutButton"
+          onClick={() => handleLogout()}
+        >
           <Icon iconType="SignOut" />
           <p>Sair</p>
         </button>
       </div>
-      <main className='MainContent'>
-        {albums ? albums.map((album,i) => (
-          <Album
-            key={i}
-            children={album.name}
-            src={album.image}
-            onClick={() => { resetAlbumContext();navigate("/album/" + album._id)}}
-          />
-        )) : (
+      <main className="MainContent">
+        {albums ? (
+          albums.map((album, i) => (
+            <Album
+              key={i}
+              children={album.name}
+              src={album.image}
+              onClick={() => {
+                resetAlbumContext();
+                navigate("/album/" + album._id);
+              }}
+            />
+          ))
+        ) : (
           <p>Carregando...</p>
         )}
-        <AddAlbum onClick={() => {resetAlbumContext();navigate("/createAlbum")}} />
+        <AddAlbum
+          onClick={() => {
+            resetAlbumContext();
+            navigate("/createAlbum");
+          }}
+        />
       </main>
     </div>
   );
