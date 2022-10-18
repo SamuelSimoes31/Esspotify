@@ -4,8 +4,7 @@
     width: 217px;
     height: 275px;
 }
-.Album:hover .AlbumImg{
-    
+.AlbumImg:hover{    
     border: solid 5px var(--Primary_Light);
     cursor: pointer;
 }
@@ -13,6 +12,7 @@
     background-color: var(--Gray_Light);
     width: 217px;
     height: 213px;
+    border: solid 5px var(--Gray_Dark);
 }
 .Album-Label{
     margin-top: 20px;
