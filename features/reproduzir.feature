@@ -1,4 +1,4 @@
-Feature: Reproduzir e baixar músicas
+Feature: Reproduzir
   As um usuário do sistema
   I want to reproduzir e baixar músicas
   So that eu possa ouvir
@@ -10,13 +10,13 @@ Feature: Reproduzir e baixar músicas
     When eu clico no botão "play"
     Then a música é reproduzida
     And aparece seu nome na barra inferior
-    
-  Scenario: Usuário consegue baixar
+
+  Scenario: Usuário pausa música
     Given estou na tela de "músicas"
     And existe uma música com o nome "The End"
-    When eu clico no botão "baixar"
-    Then a música é baixada
-    And aparece a confirmação na tela
+    And a música estar sendo reproduzida
+    When eu clico no botão "pause"
+    Then a música é pausada
 
   Scenario: Pular para a próxima música
     Given estou na tela de "músicas"
@@ -25,16 +25,16 @@ Feature: Reproduzir e baixar músicas
     Then a música é pulada
     And começa a tocar uma nova música
 
+  Scenario: Voltar para a música anterior
+  Given estou na tela de "músicas"
+  And existe uma música com o nome "The End"
+  When eu clico no botão "voltar música"
+  Then a música volta
+  And começa a tocar a música anterior
+
   Scenario: Usuário não consegue reproduzir música
     Given estou na tela de "músicas"
     And existe uma música com o nome "The End"
     When eu clico no botão "play"
     Then a música não é reproduzida
-    And aparece a mensagem de erro
-    
-  Scenario: Usuário não consegue baixar
-    Given estou na tela de "músicas"
-    And existe uma música com o nome "The End"
-    When eu clico no botão "baixar"
-    Then a música não é baixada
     And aparece a mensagem de erro

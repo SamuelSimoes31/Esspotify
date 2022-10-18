@@ -20,6 +20,12 @@ const Play = ({ songs, playIndex, setPlayIndex, ...props }) => {
     setPlaying((p) => !p);
   };
 
+  function getPlaying() {
+    return playing
+  }
+
+  console.log(getPlaying());
+
   const displayTime = (durationInSeconds) => {
     return `${
       Math.floor(durationInSeconds / 60) < 10
@@ -32,6 +38,9 @@ const Play = ({ songs, playIndex, setPlayIndex, ...props }) => {
     }`;
   };
 
+  const songName = songs ? songs[playIndex].name : "Carregando";
+  const url = songs ? songs[playIndex].url : "FALHA"
+
   const onProgress = ({ playedSeconds }) => {
     setProgress(Math.floor(playedSeconds));
   };
@@ -39,7 +48,7 @@ const Play = ({ songs, playIndex, setPlayIndex, ...props }) => {
   return (
     <div className="Play-Wrapper" {...props}>
       <div className="name">
-        <label className="PlayName">{songs[playIndex].name}</label>
+        <label className="PlayName">{songName}</label>
       </div>
       <div className="control">
         <button className="IconButton" onClick={previousSongs}>
@@ -63,7 +72,7 @@ const Play = ({ songs, playIndex, setPlayIndex, ...props }) => {
         <ReactPlayer
           height={0}
           width={0}
-          url={songs[playIndex].url}
+          url={url}
           playing={playing}
           onDuration={setDuration}
           onProgress={onProgress}
