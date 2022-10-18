@@ -3,7 +3,6 @@ import Artist from "../pages/Artist";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import EditArtist from "../pages/EditArtist";
-import Album from "../pages/Album";
 import CreateAlbum from "../pages/CreateAlbum";
 import EditAlbum from "../pages/EditAlbum";
 import CreateMusic from "../pages/CreateMusic";

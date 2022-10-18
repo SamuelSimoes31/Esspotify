@@ -1,7 +1,6 @@
 import Input from "../../components/Input";
 import Checkbox from "../../components/Checkbox";
 import LandingInfo from "../../components/LandingInfo";
-import "./styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { useState } from "react";
