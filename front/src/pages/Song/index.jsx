@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { api } from '../../services/api';
 import Play from "../../components/PlayMusic";
-import { Routes, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Icon from '../../components/Icon';
 import Album from '../../components/Album';
+import {useAlbum} from '../../contexts/Album'
 
 const Songs = () => {
   const navigate = useNavigate()
-  const [songs, setSongs] = useState([]);
-  const [album, setAlbum] = useState({});
+  const {songs,setSongs,album,setAlbum} = useAlbum();
   const [playIndex, setPlayIndex] = useState(0);
   const params = useParams();
 
@@ -50,9 +50,8 @@ const Songs = () => {
       <div className="Banner">
         <div className="name">
           <div className="album">
-            <Album
+            <img
               src={album.image}
-              onClick={() => navigate("/album/" + album._id)}
             />
           </div>
           <h1>{album.name ?? "Carregando..."}</h1>

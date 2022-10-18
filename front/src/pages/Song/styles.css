@@ -43,3 +43,10 @@
 .album {
     margin: 10px;
 }
+.album img{
+    width: 217px;
+    height: 213px;
+}
+h1{
+    color: var(--White);
+}

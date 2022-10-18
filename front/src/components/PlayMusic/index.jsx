@@ -49,9 +49,7 @@ const Play = ({songs,playIndex, setPlayIndex,...props}) => {
                     <Icon iconType="End" className="End"/>
                 </button>
             </div>
-            <button className='Duration IconButton'>
                 <p>{displayTime(progress)}/{displayTime(duration)}</p>
-            </button>
             <div className='ReactPlayer'>
                 <ReactPlayer
                     height={0}
@@ -60,6 +58,7 @@ const Play = ({songs,playIndex, setPlayIndex,...props}) => {
                     playing={playing}
                     onDuration={setDuration}
                     onProgress={onProgress}
+                    volume={0.5}
                 />
             </div>
         </div>
