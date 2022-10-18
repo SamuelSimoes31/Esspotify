@@ -41,10 +41,12 @@ export default class ArtistsController {
         delete body.password;
         delete body.createdAt;
         delete body._id;
+        if(!body.name || !body.country || !body.genre) {
+          return response.status(400)
+            .send({ error: "You can't have empty fields" });
+        }
         await Artist.updateOne({ _id: request.userId }, body);
-        const artist = await Artist.findOne({ _id: request.userId });
-
-        return response.send(artist);
+        return response.send(body);
       } else
         return response
           .status(404)
