@@ -10,9 +10,9 @@ import { useLogin } from "../../contexts/Login";
 import { toBase64, base64toFile } from "../../services/base64";
 
 const EditArtist = () => {
-  const [nome, setNome] = useState("");
-  const [pais, setPais] = useState("");
-  const [genero, setGenero] = useState("");
+  const [nome, setNome] = useState("Nome");
+  const [pais, setPais] = useState("País");
+  const [genero, setGenero] = useState("Estilo Musical");
   const [image, setImage] = useState(undefined);
   const navigate = useNavigate();
   const { loggedUserId } = useLogin();
@@ -24,9 +24,11 @@ const EditArtist = () => {
       setNome(body.name);
       setPais(body.country);
       setGenero(body.genre);
-
-      const teste = base64toFile(body.image, "test.png", "image/type");
-      setImage(teste);
+      
+      let test;
+      if (body.image) {test = base64toFile(body.image, "test.png", "image/type")}
+      else {test = body.image;}
+      setImage(test);
     };
 
     try {
@@ -43,7 +45,7 @@ const EditArtist = () => {
       name: nome,
       country: pais,
       genre: genero,
-      image: await toBase64(image),
+      image:  image ? await toBase64(image) : "",
     };
     try {
       await api.put("/artists/", body);
