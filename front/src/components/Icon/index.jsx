@@ -9,26 +9,36 @@ import { ReactComponent as Start } from "../../assets/control-start.svg";
 import { ReactComponent as End } from "../../assets/control-end.svg";
 import { ReactComponent as Pause } from "../../assets/pause.svg";
 import { ReactComponent as Back } from "../../assets/back.svg";
-import './styles.css'
+import "./styles.css";
 
-const Icon = ({iconType, className, ...props}) =>{
-    return (
-        <button className={`Icon ${className}`} {...props}>
-            {
-                (iconType==="Edit")?<Edit/>
-                :(iconType==="Remove")?<Remove/>
-                :(iconType==="SignOut")?<SignOut/>
-                :(iconType==="ImgBox")?<ImgBox/>
-                :(iconType==="Download")?<Download/>
-                :(iconType==="Play")?<Play/>
-                :(iconType==="Start")?<Start/>
-                :(iconType==="End")?<End/>
-                :(iconType==="Pause")? <Pause/>
-                :(iconType==="Back")? <Back/>
-                :""
-            }
-        </button>
-    );
+const Icon = ({ iconType, className, ...props }) => {
+  return (
+    <button className={`Icon ${className}`} {...props}>
+      {iconType === "Edit" ? (
+        <Edit />
+      ) : iconType === "Remove" ? (
+        <Remove />
+      ) : iconType === "SignOut" ? (
+        <SignOut />
+      ) : iconType === "ImgBox" ? (
+        <ImgBox />
+      ) : iconType === "Download" ? (
+        <Download />
+      ) : iconType === "Play" ? (
+        <Play />
+      ) : iconType === "Start" ? (
+        <Start />
+      ) : iconType === "End" ? (
+        <End />
+      ) : iconType === "Pause" ? (
+        <Pause />
+      ) : iconType === "Back" ? (
+        <Back />
+      ) : (
+        ""
+      )}
+    </button>
+  );
 };
 
 export default Icon;

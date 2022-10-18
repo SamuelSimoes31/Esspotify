@@ -1,12 +1,9 @@
-import { LoginProvider } from './Login';
-import { AlbumProvider } from './Album'
+import { LoginProvider } from "./Login";
+import { AlbumProvider } from "./Album";
 const AppProvider = ({ children }) => {
   return (
     <LoginProvider>
-
-      <AlbumProvider>
-      {children}
-      </AlbumProvider>
+      <AlbumProvider>{children}</AlbumProvider>
     </LoginProvider>
   );
 };
