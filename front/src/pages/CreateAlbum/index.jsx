@@ -3,9 +3,8 @@ import ImgUploader from "../../components/ImgUploader";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Song from "../../components/Song";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAlbum } from "../../contexts/Album";
-import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 const CreateAlbum = () => {
   const navigate = useNavigate();

@@ -5,9 +5,8 @@ import Button from "../../components/Button";
 import Song from "../../components/Song";
 import React, { useState, useEffect } from "react";
 import { useAlbum } from "../../contexts/Album";
-import { api } from "../../services/api";
 import { useNavigate, useLocation } from "react-router-dom";
-import { toBase64, base64toFile } from "../../services/base64";
+import { base64toFile } from "../../services/base64";
 const EditAlbum = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,8 +21,6 @@ const EditAlbum = () => {
     songs,
     setSongs,
     handleEditAlbum,
-    album,
-    setAlbum,
   } = useAlbum();
   useEffect(() => {
     if (location.state.songs) setOldSongs(location.state.songs);

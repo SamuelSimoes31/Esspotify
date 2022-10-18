@@ -46,24 +46,4 @@ describe("Create Album", () => {
     });
     expect(alertMock).toHaveBeenCalledWith("*Album precisa conter uma música*");
   });
-  // test('criar álbum, sucesso', async () => {
-  //   const alertMock = jest.spyOn(window, 'alert').mockImplementation();
-  //   render(
-  //     <ContextsWrapper>
-  //       <CreateAlbum />
-  //     </ContextsWrapper>
-  //   );
-
-  //   const nameTarget = screen.getByPlaceholderText("Nome");
-  //   const yearTarget = screen.getByPlaceholderText("aaaa");
-  //   fireEvent.change(nameTarget,{target:{value:"BANG"}});
-  //   fireEvent.change(yearTarget,{target:{value:1969}});
-  //   fireEvent.click(screen.getByRole('button'));
-  //   const setState = jest.fn();
-  //   const songs = jest.spyOn(React,'useState').mockImplementation((initialState) => [initialState, setState]);
-  //   await waitFor(() => {
-  //     expect(alertMock).toHaveBeenCalledTimes(1);
-  //   });
-  //   expect(songs).toContainEqual();
-  // });
 });

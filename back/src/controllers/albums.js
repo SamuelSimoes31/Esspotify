@@ -1,4 +1,4 @@
-import express, { request, response } from "express";
+import express from "express";
 import { authorizationMiddleware } from "../middlewares/authorization.js";
 import { Album } from "../models/album.js";
 import { Song } from "../models/song.js";

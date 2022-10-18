@@ -6,7 +6,6 @@ import {
   waitFor,
 } from "@testing-library/react";
 import CreateMusic from ".";
-import { AlbumProvider } from "../../contexts/Album";
 import { ContextsWrapper, mockedApi } from "../../tests/utils";
 afterEach(cleanup);
 describe("Create Music", () => {

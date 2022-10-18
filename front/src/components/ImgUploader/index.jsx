@@ -1,15 +1,8 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import { ReactComponent as ImgBox } from "../../assets/Img_box_light.svg";
 import "./styles.css";
 
 const ImgUploader = ({ value, ...props }) => {
-  // const [selectedFile, setSelectedFile] = useState(value);
-  // const changeHandler = (event) => {
-  // 	setSelectedFile(event.target.files[0]);
-  // };
-
-  // useEffect(()=>{setSelectedFile(value)}, [value])
-
   return (
     <div className="ImgUploader" {...props}>
       <label className="FileSelector-Clicker" for="arquive"></label>

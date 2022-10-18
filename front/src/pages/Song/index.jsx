@@ -6,7 +6,6 @@ import { api } from "../../services/api";
 import Play from "../../components/PlayMusic";
 import { useNavigate } from "react-router";
 import Icon from "../../components/Icon";
-import Album from "../../components/Album";
 import { useAlbum } from "../../contexts/Album";
 
 const Songs = () => {

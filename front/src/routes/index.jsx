@@ -7,10 +7,8 @@ import CreateAlbum from "../pages/CreateAlbum";
 import EditAlbum from "../pages/EditAlbum";
 import CreateMusic from "../pages/CreateMusic";
 import Song from "../pages/Song";
-// import { useLogin } from '../contexts/Login';
 
 const AppRoutes = () => {
-  // const { loggedUserId } = useLogin();
   return (
     <Routes>
       <Route path="/register" element={<Register />} />
