@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const SongSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   url: {
     type: String,
@@ -14,22 +14,22 @@ const SongSchema = new mongoose.Schema({
     type: String,
   },
   explicit: {
-    type: Boolean
+    type: Boolean,
   },
   artist: {
-    type : mongoose.Schema.Types.ObjectId,
-    ref : 'Artist',
-    required : true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Artist",
+    required: true,
   },
-  album : {
-    type : mongoose.Schema.Types.ObjectId,
-    ref : 'Album',
-    required : true,
+  album: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Album",
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 });
 
-export const Song = mongoose.model('Song', SongSchema);
+export const Song = mongoose.model("Song", SongSchema);

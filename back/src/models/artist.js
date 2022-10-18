@@ -1,21 +1,21 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const ArtistSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     unique: true,
     required: true,
-    lowercase: true
+    lowercase: true,
   },
   password: {
     type: String,
     required: true,
-    select: false
+    select: false,
   },
   country: {
     type: String,
@@ -25,19 +25,19 @@ const ArtistSchema = new mongoose.Schema({
   },
   image: {
     data: Buffer,
-    contentType: String
+    contentType: String,
   },
   createdAt: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 });
 
-ArtistSchema.pre('save', async function(next) {
+ArtistSchema.pre("save", async function (next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
 
   next();
 });
 
-export const Artist = mongoose.model('Artist', ArtistSchema);
+export const Artist = mongoose.model("Artist", ArtistSchema);

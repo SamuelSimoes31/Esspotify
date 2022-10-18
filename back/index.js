@@ -1,6 +1,6 @@
-import './dotenv.config.js'
-import { connectDB } from './src/database/index.js';
-import app from './src/server.js';
+import "./dotenv.config.js";
+import { connectDB } from "./src/database/index.js";
+import app from "./src/server.js";
 
 (async function () {
   try {
